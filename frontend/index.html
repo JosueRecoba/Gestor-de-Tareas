@@ -4,13 +4,20 @@
   <meta charset="utf-8" />
   <title>Gestor de Tareas</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="frontend/style.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <main class="container">
     <h1>Gestor de Tareas</h1>
     <p>Bienvenido al gestor de tareas. Aquí podrás administrar tus tareas de manera eficiente.</p>
+
+    <div class="add-task">
+      <input type="text" id="newTask" placeholder="Nueva tarea">
+      <button id="addBtn">Agregar</button>
+    </div>
+
+    <ul id="taskList"></ul>
   </main>
-  <script src="./app.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
