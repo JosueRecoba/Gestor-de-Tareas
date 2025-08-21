@@ -1,11 +1,30 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 import json
 import os
 
 app = Flask(__name__)
 DATA_FILE = "tasks.json"
 
-# Sirve para leer tareas desde el archivo JSON
+# -------------------------------
+# Rutas para servir frontend
+# -------------------------------
+# Ajusta esta ruta según tu estructura de carpetas:
+# Si task_tracker.py está en backend/ y frontend/ está al mismo nivel que backend/
+FRONTEND_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../frontend')
+
+# Servir index.html
+@app.route('/')
+def index():
+    return send_from_directory(FRONTEND_FOLDER, 'index.html')
+
+# Servir archivos estáticos (CSS, JS)
+@app.route('/<path:path>')
+def static_files(path):
+    return send_from_directory(FRONTEND_FOLDER, path)
+
+# -------------------------------
+# Funciones para manejar tareas
+# -------------------------------
 def load_tasks():
     if os.path.exists(DATA_FILE):
         with open(DATA_FILE, "r") as file:
@@ -15,11 +34,13 @@ def load_tasks():
                 return []
     return []
 
-# Guardar tareas en el archivo JSON
 def save_tasks(tasks):
     with open(DATA_FILE, "w") as file:
         json.dump(tasks, file, indent=4)
 
+# -------------------------------
+# Rutas de API
+# -------------------------------
 @app.route("/tasks", methods=["GET"])
 def get_tasks():
     return jsonify(load_tasks())
@@ -54,5 +75,8 @@ def delete_task(task_id):
     save_tasks(tasks)
     return jsonify({"message": "Task deleted"})
 
+# -------------------------------
+# Ejecutar Flask
+# -------------------------------
 if __name__ == "__main__":
     app.run(debug=True)
