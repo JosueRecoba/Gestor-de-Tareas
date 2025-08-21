@@ -1,12 +1,41 @@
+/* Reset básico */
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: system-ui, Arial, sans-serif; background: #f5f5f5; }
-.container { max-width: 900px; margin: 40px auto; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1);}
-h1 { text-align: center; margin-bottom: 20px; }
-.add-task { display: flex; margin-bottom: 20px; }
-#newTask { flex: 1; padding: 10px; font-size: 16px; }
-#addBtn { padding: 10px 20px; margin-left: 10px; cursor: pointer; background-color: #61A60E; color: white; border: none; border-radius: 4px; }
-#addBtn:hover { background-color: #51940B; }
+body { font-family: 'Inter', system-ui, Arial, sans-serif; background: #f4f6f8; color: #333; }
+
+/* Contenedor principal */
+.container { 
+  max-width: 600px; 
+  margin: 50px auto; 
+  padding: 30px; 
+  background: #fff; 
+  border-radius: 12px; 
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+/* Título y descripción */
+h1 { text-align: center; color: #242571; margin-bottom: 10px; }
+p { text-align: center; color: #555; margin-bottom: 25px; }
+
+/* Sección de agregar tarea */
+.add-task { display: flex; gap: 10px; margin-bottom: 25px; }
+#newTask { flex: 1; padding: 12px; font-size: 16px; border-radius: 8px; border: 1px solid #ccc; transition: 0.3s; }
+#newTask:focus { border-color: #242571; outline: none; }
+
+/* Botones */
+.btn { padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; color: #fff; transition: 0.3s; }
+.add-btn { background-color: #61A60E; }
+.add-btn:hover { background-color: #51940B; }
+
+.done-btn { background-color: #3498db; }
+.done-btn:hover { background-color: #217dbb; }
+
+.delete-btn { background-color: #E55213; }
+.delete-btn:hover { background-color: #c34010; }
+
+/* Lista de tareas */
 #taskList { list-style: none; }
-.task-item { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #ddd; }
-.task-item.done { text-decoration: line-through; color: gray; }
-.task-item button { background: red; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; margin-left: 5px;}
+.task-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 15px; margin-bottom: 10px; background: #f9f9f9; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); transition: 0.3s; }
+.task-item.done { text-decoration: line-through; background: #d4edda; color: #155724;   }
+
+/* Botones dentro de cada tarea */
+.task-item button { margin-left: 5px; }
